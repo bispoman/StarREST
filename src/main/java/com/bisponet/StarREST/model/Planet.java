@@ -11,22 +11,28 @@ public class Planet {
     private String id;
 
     @Indexed(name = "nome")
-    private String name;
+    private String nome;
 
     private String clima;
 
     private String terreno;
 
+    public Planet(String nome, String clima, String terreno) {
+        this.nome = nome;
+        this.clima = clima;
+        this.terreno = terreno;
+    }
+
     public String getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getClima() {
