@@ -2,7 +2,6 @@ package com.bisponet.StarREST.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Indexed;
 
 @Document("Planet")
 public class Planet {
@@ -10,7 +9,6 @@ public class Planet {
     @Id
     private String id;
 
-    @Indexed(name = "nome")
     private String nome;
 
     private String clima;
