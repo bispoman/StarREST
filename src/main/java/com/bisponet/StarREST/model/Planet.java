@@ -15,10 +15,13 @@ public class Planet {
 
     private String terreno;
 
-    public Planet(String nome, String clima, String terreno) {
+    private Integer aif;
+
+    public Planet(String nome, String clima, String terreno, Integer aif) {
         this.nome = nome;
         this.clima = clima;
         this.terreno = terreno;
+        this.aif = aif;
     }
 
     public String getId() {
@@ -47,5 +50,13 @@ public class Planet {
 
     public void setTerreno(String terreno) {
         this.terreno = terreno;
+    }
+
+    public int getAif() {
+        return aif;
+    }
+
+    public void setAif(Integer aif) {
+        this.aif = aif;
     }
 }

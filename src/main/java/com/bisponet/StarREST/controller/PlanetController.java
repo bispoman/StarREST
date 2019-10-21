@@ -25,13 +25,13 @@ public class PlanetController {
     }
 
     //Endpoint para buscar os planetas baseado no ID
-    @GetMapping("/planeta/{id}")
+    @GetMapping("/planeta/id/{id}")
     public Optional<Planet> findPlanetById(@PathVariable String id) {
         return service.getPlanetById(id);
     }
 
     //Endpoint para buscar os planetas baseado no nome
-    @GetMapping("/planeta/{name}")
+    @GetMapping("/planeta/nome/{name}")
     public Planet findPlanetByName(@PathVariable String name) {
         return service.getPlanetByName(name);
     }
@@ -40,14 +40,15 @@ public class PlanetController {
     @PostMapping("/planeta")
     public ResponseEntity<?> addNewPlanet(@RequestBody Map<String, String> payload) {
 
-        if (payload.get("nome").isEmpty() || payload.get("clima").isEmpty() || payload.get("terreno").isEmpty()) {
+        if (payload.get("nome").isEmpty() || payload.get("clima").isEmpty() || payload.get("terreno").isEmpty() || payload.get("aif").isEmpty()) {
             return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
         } else {
             String nome = payload.get("nome");
             String clima = payload.get("clima");
             String terreno = payload.get("terreno");
-            if (service.saveNewPlanet(nome, clima, terreno)) {
-                return new ResponseEntity<String>(HttpStatus.ACCEPTED);
+            String aif = payload.get("aif");
+            if (service.saveNewPlanet(nome, clima, terreno,aif)) {
+                return new ResponseEntity<String>(HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
             }

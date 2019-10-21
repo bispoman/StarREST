@@ -26,10 +26,11 @@ public class PlanetService {
         return repository.findByNome(nome);
     }
 
-    public Boolean saveNewPlanet(String nome, String clima, String terreno) {
+    public Boolean saveNewPlanet(String nome, String clima, String terreno, String aif) {
 
         try {
-            Planet planet = new Planet(nome, clima, terreno);
+            int aifInt = Integer.parseInt(aif);
+            Planet planet = new Planet(nome, clima, terreno, aifInt);
             repository.save(planet);
         } catch (Exception e) {
             return false;
