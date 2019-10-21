@@ -5,6 +5,7 @@ import com.bisponet.StarREST.repository.PlanetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,12 +27,10 @@ public class PlanetService {
         return repository.findByNome(nome);
     }
 
-    public Boolean saveNewPlanet(String nome, String clima, String terreno, String aif) {
+    public Boolean saveNewPlanet(Planet planeta) {
 
         try {
-            int aifInt = Integer.parseInt(aif);
-            Planet planet = new Planet(nome, clima, terreno, aifInt);
-            repository.save(planet);
+            repository.save(planeta);
         } catch (Exception e) {
             return false;
         }

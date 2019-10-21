@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -38,20 +38,12 @@ public class PlanetController {
 
     //Endpoint para inserir planetas no banco de dados
     @PostMapping("/planeta")
-    public ResponseEntity<?> addNewPlanet(@RequestBody Map<String, String> payload) {
+    public ResponseEntity<?> addNewPlanet(@Valid @RequestBody Planet planeta) {
 
-        if (payload.get("nome").isEmpty() || payload.get("clima").isEmpty() || payload.get("terreno").isEmpty() || payload.get("aif").isEmpty()) {
-            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
-        } else {
-            String nome = payload.get("nome");
-            String clima = payload.get("clima");
-            String terreno = payload.get("terreno");
-            String aif = payload.get("aif");
-            if (service.saveNewPlanet(nome, clima, terreno,aif)) {
+            if (service.saveNewPlanet(planeta)) {
                 return new ResponseEntity<String>(HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
     }
-}
 }
