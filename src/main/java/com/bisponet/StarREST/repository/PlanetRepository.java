@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface PlanetRepository extends MongoRepository<Planet, String> {
 
-    Planet findByName(String name);
+    Planet findByNome(String nome);
 
 }

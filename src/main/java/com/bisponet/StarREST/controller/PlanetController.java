@@ -18,26 +18,30 @@ public class PlanetController {
     @Autowired
     private PlanetService service;
 
+    //Endpoint para buscar todos os planetas do banco
     @GetMapping("/planetas")
     public List<Planet> planets() {
         return service.findAllPlanets();
     }
 
+    //Endpoint para buscar os planetas baseado no ID
     @GetMapping("/planeta/{id}")
     public Optional<Planet> findPlanetById(@PathVariable String id) {
         return service.getPlanetById(id);
     }
 
+    //Endpoint para buscar os planetas baseado no nome
     @GetMapping("/planeta/{name}")
     public Planet findPlanetByName(@PathVariable String name) {
         return service.getPlanetByName(name);
     }
 
+    //Endpoint para inserir planetas no banco de dados
     @PostMapping("/planeta")
     public ResponseEntity<?> addNewPlanet(@RequestBody Map<String, String> payload) {
 
         if (payload.get("nome").isEmpty() || payload.get("clima").isEmpty() || payload.get("terreno").isEmpty()) {
-            return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
         } else {
             String nome = payload.get("nome");
             String clima = payload.get("clima");

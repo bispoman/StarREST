@@ -23,7 +23,7 @@ public class PlanetService {
     }
 
     public Planet getPlanetByName(String nome) {
-        return repository.findByName(nome);
+        return repository.findByNome(nome);
     }
 
     public Boolean saveNewPlanet(String nome, String clima, String terreno) {
