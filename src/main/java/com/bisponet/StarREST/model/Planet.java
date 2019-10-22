@@ -3,6 +3,8 @@ package com.bisponet.StarREST.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
+
 @Document("Planet")
 public class Planet {
 
@@ -16,6 +18,9 @@ public class Planet {
     private String terreno;
 
     private Integer aif;
+
+    public Planet() {
+    }
 
     public Planet(String nome, String clima, String terreno, Integer aif) {
         this.nome = nome;
@@ -58,5 +63,22 @@ public class Planet {
 
     public void setAif(Integer aif) {
         this.aif = aif;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Planet planet = (Planet) o;
+        return Objects.equals(id, planet.id) &&
+                Objects.equals(nome, planet.nome) &&
+                Objects.equals(clima, planet.clima) &&
+                Objects.equals(terreno, planet.terreno) &&
+                Objects.equals(aif, planet.aif);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, clima, terreno, aif);
     }
 }
