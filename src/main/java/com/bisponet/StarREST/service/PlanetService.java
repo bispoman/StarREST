@@ -28,11 +28,6 @@ public class PlanetService {
 
     public Boolean saveNewPlanet(Planet planeta) {
 
-        try {
-            repository.save(planeta);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
+        return repository.save(planeta) == planeta;
     }
 }
